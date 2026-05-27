@@ -2,7 +2,17 @@
 
 SecureVault is a high-performance, cyber-secure, and fast digital asset management interface engineered specifically for the strict nested-file storage needs of enterprise law firms and banking institutions. Built to replace legacy data layouts, this solution combines high-fidelity visual design paradigms with optimized recursive computer science fundamentals.
 
----
+
+## 🛡️ Secure Access & Authentication
+To enhance the realism and security simulation of the SecureVault dashboard, I have implemented a functional Login Form.
+
+*  **Secure Access: Access to the dashboard is protected by an authentication layer to simulate a professional enterprise environment.
+
+* ** Credentials: To directly access the dashboard for demonstration purposes, use the following credentials:
+
+Password: secure2026
+
+* Implementation: While not strictly required by the initial project scope, this feature was added to demonstrate a more complete, "ready-to-deploy" user flow and to reinforce the project's focus on high-fidelity security UI.
 
 ## 🚀 Live Demonstration & Design Assets
 
