@@ -3,7 +3,19 @@ import { useExplorer } from '../../context/ExplorerContext';
 import { formatFileSize } from '../../utils/formatFileSize';
 
 const PropertiesPanel = () => {
-  const { selectedItem } = useExplorer();
+  const { selectedItem, deleteItem } = useExplorer(); // Added deleteItem
+
+  // Handlers
+  const handleDownload = () => alert(`Initiating download: ${selectedItem.name}`);
+  const handleShare = () => {
+    navigator.clipboard.writeText(window.location.href);
+    alert('Link copied to clipboard!');
+  };
+  const handleDelete = () => {
+    if (window.confirm(`Permanently delete ${selectedItem.name}?`)) {
+      deleteItem(selectedItem.id);
+    }
+  };
 
   if (!selectedItem) {
     return (
@@ -19,9 +31,8 @@ const PropertiesPanel = () => {
       {/* 1. TOP PREVIEW AREA */}
       <div className="p-6 flex flex-col items-center border-b border-slate-850">
         <div className="h-32 w-full bg-[#0C101A] border border-slate-800 rounded flex items-center justify-center text-4xl mb-4 relative overflow-hidden">
-          {/* Mocked PDF preview texture */}
           <div className="absolute inset-0 bg-cyan-950/20" />
-          📄
+          {selectedItem.type === 'folder' ? '📁' : '📄'}
         </div>
         <h3 className="text-sm font-bold text-white text-center break-all">{selectedItem.name}</h3>
         <p className="text-[10px] text-slate-500 font-mono mt-1">SHA-256: {selectedItem.checksum?.substring(0, 12) || 'a8f3...c91'}</p>
@@ -73,11 +84,11 @@ const PropertiesPanel = () => {
 
       {/* 5. ACTION FOOTER (DOWNLOAD, SHARE, DELETE) */}
       <div className="p-4 border-t border-slate-850 bg-[#090D14] flex gap-2">
-        <button className="flex-[3] bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold py-2.5 rounded transition-all">
+        <button onClick={handleDownload} className="flex-[3] bg-cyan-600 hover:bg-cyan-500 text-slate-950 font-bold text-xs py-2.5 rounded transition-all">
           Download
         </button>
-        <button className="flex-1 bg-slate-800 hover:bg-slate-700 text-white text-xs rounded flex items-center justify-center">🔗</button>
-        <button className="flex-1 bg-rose-950/40 hover:bg-rose-900/60 text-rose-400 text-xs rounded flex items-center justify-center">🗑️</button>
+        <button onClick={handleShare} className="flex-1 bg-slate-800 hover:bg-slate-700 text-white text-xs rounded flex items-center justify-center transition-all">🔗</button>
+        <button onClick={handleDelete} className="flex-1 bg-rose-950/40 hover:bg-rose-900/60 text-rose-400 text-xs rounded flex items-center justify-center transition-all">🗑️</button>
       </div>
     </aside>
   );

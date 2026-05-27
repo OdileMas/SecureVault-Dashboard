@@ -6,9 +6,9 @@ SecureVault is a high-performance, cyber-secure, and fast digital asset manageme
 
 ## 🚀 Live Demonstration & Design Assets
 
-* **Live Interactive Deployment:** [PASTE YOUR COMPLETED VERCEL LIVE URL HERE]
-* **Figma Design System File:** [PASTE YOUR FIGMA SHARING LINK HERE]
-  *(Note: Link permission configuration is explicitly configured to "Anyone with the link can view")*
+* **Live Interactive Deployment:** (https://secure-vault-dashboard-gyll3yx51-security-vault.vercel.app)
+* **Figma Design System File:** https://www.figma.com/design/zf9QXnYqyWaDlDxUJk9Nrw/Untitled?node-id=0-1&t=bazcFrPciF0YX0Z3-1
+  
 
 ---
 

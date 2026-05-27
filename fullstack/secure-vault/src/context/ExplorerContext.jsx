@@ -1,28 +1,27 @@
 import React, { createContext, useContext, useState } from 'react';
-import initialFileSystem from '../data/data.json'; // Direct dynamic load from your data channel
+import initialFileSystem from '../data/data.json'; 
 
 const ExplorerContext = createContext();
 
 export const ExplorerProvider = ({ children }) => {
   const [activeTab, setActiveTab] = useState('Explorer');
   const [searchQuery, setSearchQuery] = useState('');
-  
-  // Set default initial selection to match the active file configuration from your layout mockups
-  const [selectedItem, setSelectedItem] = useState({
-    id: "email_1",
-    name: "Email_Thread_Jan2024.pdf",
-    type: "file",
-    size: "4.2MB",
-    owner: "Admin_Alpha",
-    updatedAt: "2024-01-24 14:32",
-    status: "Secure",
-    version: "v2.4.0",
-    checksum: "SHA-256: 8a4c...e31b",
-    dataClass: "HIGHLY CONFIDENTIAL"
-  });
-
-  // Load state straight out of your tracking database JSON file
+  const [selectedItem, setSelectedItem] = useState(null);
   const [fileSystem, setFileSystem] = useState(initialFileSystem);
+
+  // New: Function to recursively delete an item by ID
+  const deleteItem = (id) => {
+    const removeNode = (nodes) => {
+      return nodes
+        .filter(node => node.id !== id)
+        .map(node => ({
+          ...node,
+          children: node.children ? removeNode(node.children) : undefined
+        }));
+    };
+    setFileSystem(prev => removeNode(prev));
+    setSelectedItem(null); // Close panel after deletion
+  };
 
   return (
     <ExplorerContext.Provider value={{
@@ -33,7 +32,8 @@ export const ExplorerProvider = ({ children }) => {
       searchQuery,
       setSearchQuery,
       selectedItem,
-      setSelectedItem
+      setSelectedItem,
+      deleteItem // Added to context
     }}>
       {children}
     </ExplorerContext.Provider>
