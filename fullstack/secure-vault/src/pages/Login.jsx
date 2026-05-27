@@ -33,12 +33,20 @@ const Login = () => {
       {/* Decorative cyber grid matrices */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-25" />
 
-      <div className="w-full max-w-md bg-[#0B0F17]/80 backdrop-blur-md rounded-xl p-8 border border-slate-850 relative z-10 shadow-2xl">
+      <div className="w-full max-w-md bg-[#0B0F17]/80 backdrop-blur-md rounded-xl p-8 border border-slate-800 relative z-10 shadow-2xl">
         <div className="flex flex-col items-center text-center mb-8">
-          <div className="h-12 w-12 rounded bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 mb-4">
-            <svg className="w-6 h-6 text-slate-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 00-2 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-            </svg>
+          {/* Integrated high-fidelity brand asset container replacing the generic padlock SVG */}
+          <div className="h-16 w-16 flex items-center justify-center mb-4 bg-transparent">
+            <img 
+              src="/logo.png" 
+              alt="SecureVault Brand Asset" 
+              className="h-full w-full object-contain mix-blend-screen bg-transparent"
+              onError={(e) => {
+                // Fallback to stylized structural placeholder box if image file is missing during build checks
+                e.target.style.display = 'none';
+                e.target.parentNode.innerHTML = `<div class="h-12 w-12 rounded bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 font-sans font-black text-slate-950 text-xl">SV</div>`;
+              }}
+            />
           </div>
           <h1 className="text-xl font-bold font-sans tracking-wide text-white">
             SecureVault
